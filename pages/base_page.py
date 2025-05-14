@@ -1,5 +1,8 @@
-from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, ElementNotInteractableException
 # from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import math
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
@@ -16,6 +19,16 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+    
+    def is_element_clickable(self, locator):
+        try:
+            WebDriverWait(self.browser, 10).until(
+                EC.element_to_be_clickable(locator)
+            )
+        except (ElementNotInteractableException):
+            return False
+        return True
+
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
@@ -30,3 +43,6 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+
+
