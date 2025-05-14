@@ -1,5 +1,4 @@
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, ElementNotInteractableException
-# from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import math
@@ -43,6 +42,3 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
-
-
-

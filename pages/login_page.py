@@ -8,11 +8,8 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        # self.browser.current_url
-        # *LoginPageLocators.LOGIN_LINK
         isLinkExistInUrl = LoginPageLocators.LOGIN_SUBS in self.browser.current_url
         assert isLinkExistInUrl, "Substring is not exist in url"
-        # assert self.is_element_present(*LoginPageLocators.LOGIN_LINK), "Login link is not presented"
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
